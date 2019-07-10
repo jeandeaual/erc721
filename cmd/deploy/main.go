@@ -1,5 +1,3 @@
-//go:generate abigen --sol contract/ERC721.sol --pkg main --out contract.go
-
 package main
 
 import (
@@ -14,7 +12,8 @@ import (
 
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/ethereum/go-ethereum/ethclient"
+
+	"erc721"
 )
 
 const (
@@ -50,7 +49,7 @@ func main() {
 
 	log.Println("Dialing", endpoint)
 
-	client, err := ethclient.Dial(endpoint)
+	client, err := erc721.Connect(endpoint)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -88,7 +87,7 @@ func main() {
 		auth.GasPrice = big.NewInt(int64(gasPrice))
 	}
 
-	addr, tx, _, err := DeployERC721(auth, client)
+	addr, tx, _, err := erc721.DeployERC721(auth, client)
 	if err != nil {
 		log.Fatalf("Failed to deploy new contract: %v", err)
 	}
