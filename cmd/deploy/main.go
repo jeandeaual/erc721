@@ -34,7 +34,7 @@ func main() {
 		flag.PrintDefaults()
 	}
 
-	flag.StringVar(&endpoint, "pattern", defaultEndpoint, "Connection endpoint")
+	flag.StringVar(&endpoint, "endpoint", defaultEndpoint, "Connection endpoint")
 	flag.IntVar(&gasPrice, "gasPrice", defaultGasPrice, "Gas price for the deployment (defaults to the suggested price)")
 	flag.IntVar(&gasLimit, "gasLimit", defaultGasLimit, "Gas limit for the deployment")
 
